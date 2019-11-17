@@ -28,7 +28,7 @@ namespace BusinessTrips.WebApp
             services.AddRazorPages();
 
             services.AddDbContext<BusinessTripsContext>(options =>
-                    options.UseSqlServer("Server=sql1,1433;Database=Master;User Id=SA;Password=P@ssw0rd;"));
+                    options.UseSqlServer("Server=localhost,1433;Database=Master;User Id=SA;Password=P@ssw0rd;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

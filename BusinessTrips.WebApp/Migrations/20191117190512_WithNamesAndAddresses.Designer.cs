@@ -3,14 +3,16 @@ using BusinessTrips.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BusinessTrips.WebApp.Migrations
 {
     [DbContext(typeof(BusinessTripsContext))]
-    partial class BusinessTripsContextModelSnapshot : ModelSnapshot
+    [Migration("20191117190512_WithNamesAndAddresses")]
+    partial class WithNamesAndAddresses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
