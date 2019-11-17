@@ -11,10 +11,8 @@ namespace BusinessTrips.Model
         public int AddressId { get; set; }
 
         [Required]
-        public Name Name { get; set; }
-
-        [Required]
         public string Street { get; set; }
+
         [Required]
         public string StreetNumber { get; set; }
 
