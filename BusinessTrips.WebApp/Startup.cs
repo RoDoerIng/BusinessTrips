@@ -29,8 +29,8 @@ namespace BusinessTrips.WebApp
 
             services.AddDbContext<BusinessTripsContext>(options =>
                     options
-                    //.UseSqlServer("Server=localhost,1433;Database=Master;User Id=SA;Password=P@ssw0rd;")
-                    .UseInMemoryDatabase("BusinessTrips")
+                     .UseSqlServer(@"Server=db;Database=master;User Id=sa;Password=P@ssw0rd;")
+                     //.UseInMemoryDatabase("BusinessTrips")
                     );
         }
 

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using BusinessTrips.WebApp.Extensions;
+using BusinessTrips.Data;
 
 namespace BusinessTrips.WebApp
 {
@@ -13,7 +15,7 @@ namespace BusinessTrips.WebApp
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().MigrateDatabase<BusinessTripsContext>().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

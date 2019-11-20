@@ -6,7 +6,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
 COPY ["BusinessTrips.WebApp/BusinessTrips.WebApp.csproj", "BusinessTrips.WebApp/"]
-COPY ["BusinessTrips/BusinessTrips.csproj", "BusinessTrips/"]
 RUN dotnet restore "BusinessTrips.WebApp/BusinessTrips.WebApp.csproj"
 COPY . .
 WORKDIR "/src/BusinessTrips.WebApp"
