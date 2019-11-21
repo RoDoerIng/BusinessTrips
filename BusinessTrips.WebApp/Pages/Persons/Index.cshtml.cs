@@ -19,11 +19,11 @@ namespace BusinessTrips.WebApp.Pages.Persons
             _context = context;
         }
 
-        public IList<Person> Person { get;set; }
+        public IList<Person> Persons { get;set; }
 
         public async Task OnGetAsync()
         {
-            Person = await _context.Persons.ToListAsync();
+            Persons = await _context.Persons.ToListAsync();
         }
     }
 }

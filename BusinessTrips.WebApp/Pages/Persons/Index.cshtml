@@ -13,12 +13,38 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons[0].Name.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons[0].Address.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons[0].Address.PostCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons[0].Address.City)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Person) {
+@foreach (var item in Model.Persons)
+{
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name.LastName)
+            </td>
+            
+            <td>
+                @item.Address.Street @item.Address.StreetNumber
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.PostCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.City)
+            </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.PersonId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.PersonId">Details</a> |

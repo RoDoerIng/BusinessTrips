@@ -23,10 +23,7 @@ namespace BusinessTrips.WebApp.Pages.Persons
         {
             return Page();
         }
-
-        //[BindProperty]
-        //public Person Person { get; set; }
-
+        
         [BindProperty]
         public Name Name { get; set; }
 

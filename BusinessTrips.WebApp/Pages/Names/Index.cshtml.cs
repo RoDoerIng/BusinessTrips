@@ -19,11 +19,11 @@ namespace BusinessTrips.WebApp.Pages.Names
             _context = context;
         }
 
-        public IList<Name> Name { get;set; }
+        public IList<Name> Names { get;set; }
 
         public async Task OnGetAsync()
         {
-            Name = await _context.Names.ToListAsync();
+            Names = await _context.Names.ToListAsync();
         }
     }
 }

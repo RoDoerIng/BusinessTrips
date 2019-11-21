@@ -18,6 +18,7 @@
     "BusinessTrips.WebApp": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "persons",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
