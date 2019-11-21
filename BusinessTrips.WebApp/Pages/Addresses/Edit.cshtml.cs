@@ -30,7 +30,7 @@ namespace BusinessTrips.WebApp.Pages.Addresses
                 return NotFound();
             }
 
-            Address = await _context.Address.FirstOrDefaultAsync(m => m.AddressId == id);
+            Address = await _context.Addresses.FirstOrDefaultAsync(m => m.AddressId == id);
 
             if (Address == null)
             {
@@ -71,7 +71,7 @@ namespace BusinessTrips.WebApp.Pages.Addresses
 
         private bool AddressExists(int id)
         {
-            return _context.Address.Any(e => e.AddressId == id);
+            return _context.Addresses.Any(e => e.AddressId == id);
         }
     }
 }

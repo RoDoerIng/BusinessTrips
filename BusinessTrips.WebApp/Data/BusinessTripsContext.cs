@@ -16,8 +16,8 @@ namespace BusinessTrips.Data
 
         public DbSet<BusinessTrips.Model.Person> Persons { get; set; }
 
-        public DbSet<BusinessTrips.Model.Address> Address { get; set; }
+        public DbSet<BusinessTrips.Model.Address> Addresses { get; set; }
 
-        public DbSet<BusinessTrips.Model.Name> Name { get; set; }
+        public DbSet<BusinessTrips.Model.Name> Names { get; set; }
     }
 }

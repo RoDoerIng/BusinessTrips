@@ -29,7 +29,7 @@ namespace BusinessTrips.WebApp.Pages.Names
                 return NotFound();
             }
 
-            Name = await _context.Name.FirstOrDefaultAsync(m => m.NameId == id);
+            Name = await _context.Names.FirstOrDefaultAsync(m => m.NameId == id);
 
             if (Name == null)
             {
@@ -45,11 +45,11 @@ namespace BusinessTrips.WebApp.Pages.Names
                 return NotFound();
             }
 
-            Name = await _context.Name.FindAsync(id);
+            Name = await _context.Names.FindAsync(id);
 
             if (Name != null)
             {
-                _context.Name.Remove(Name);
+                _context.Names.Remove(Name);
                 await _context.SaveChangesAsync();
             }
 

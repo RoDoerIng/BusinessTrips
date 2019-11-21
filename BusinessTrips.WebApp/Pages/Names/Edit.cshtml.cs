@@ -30,7 +30,7 @@ namespace BusinessTrips.WebApp.Pages.Names
                 return NotFound();
             }
 
-            Name = await _context.Name.FirstOrDefaultAsync(m => m.NameId == id);
+            Name = await _context.Names.FirstOrDefaultAsync(m => m.NameId == id);
 
             if (Name == null)
             {
@@ -71,7 +71,7 @@ namespace BusinessTrips.WebApp.Pages.Names
 
         private bool NameExists(int id)
         {
-            return _context.Name.Any(e => e.NameId == id);
+            return _context.Names.Any(e => e.NameId == id);
         }
     }
 }

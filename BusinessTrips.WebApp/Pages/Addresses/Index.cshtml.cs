@@ -23,7 +23,7 @@ namespace BusinessTrips.WebApp.Pages.Addresses
 
         public async Task OnGetAsync()
         {
-            Address = await _context.Address.ToListAsync();
+            Address = await _context.Addresses.ToListAsync();
         }
     }
 }

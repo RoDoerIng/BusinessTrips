@@ -36,7 +36,7 @@ namespace BusinessTrips.WebApp.Pages.Addresses
                 return Page();
             }
 
-            _context.Address.Add(Address);
+            _context.Addresses.Add(Address);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

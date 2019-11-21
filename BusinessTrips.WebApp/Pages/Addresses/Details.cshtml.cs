@@ -28,7 +28,7 @@ namespace BusinessTrips.WebApp.Pages.Addresses
                 return NotFound();
             }
 
-            Address = await _context.Address.FirstOrDefaultAsync(m => m.AddressId == id);
+            Address = await _context.Addresses.FirstOrDefaultAsync(m => m.AddressId == id);
 
             if (Address == null)
             {

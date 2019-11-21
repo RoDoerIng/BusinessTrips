@@ -24,8 +24,14 @@ namespace BusinessTrips.WebApp.Pages.Persons
             return Page();
         }
 
+        //[BindProperty]
+        //public Person Person { get; set; }
+
         [BindProperty]
-        public Person Person { get; set; }
+        public Name Name { get; set; }
+
+        [BindProperty]
+        public Address Address { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -36,7 +42,14 @@ namespace BusinessTrips.WebApp.Pages.Persons
                 return Page();
             }
 
-            _context.Persons.Add(Person);
+            _context.Names.Add(Name);
+            _context.Addresses.Add(Address);
+
+            var person = new Person();
+            person.Name = Name;
+            person.Address = Address;
+
+            _context.Persons.Add(person);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

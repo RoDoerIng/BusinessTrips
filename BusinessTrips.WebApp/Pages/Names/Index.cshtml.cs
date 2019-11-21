@@ -23,7 +23,7 @@ namespace BusinessTrips.WebApp.Pages.Names
 
         public async Task OnGetAsync()
         {
-            Name = await _context.Name.ToListAsync();
+            Name = await _context.Names.ToListAsync();
         }
     }
 }

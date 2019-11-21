@@ -29,7 +29,7 @@ namespace BusinessTrips.WebApp.Pages.Addresses
                 return NotFound();
             }
 
-            Address = await _context.Address.FirstOrDefaultAsync(m => m.AddressId == id);
+            Address = await _context.Addresses.FirstOrDefaultAsync(m => m.AddressId == id);
 
             if (Address == null)
             {
@@ -45,11 +45,11 @@ namespace BusinessTrips.WebApp.Pages.Addresses
                 return NotFound();
             }
 
-            Address = await _context.Address.FindAsync(id);
+            Address = await _context.Addresses.FindAsync(id);
 
             if (Address != null)
             {
-                _context.Address.Remove(Address);
+                _context.Addresses.Remove(Address);
                 await _context.SaveChangesAsync();
             }
 
