@@ -12,6 +12,16 @@ namespace BusinessTrips.WebApp.Extensions
 {
     public static class WebHostExtension
     {
+        /// <summary>
+        /// Executes the DB migration for a specific DbContext <typeparamref name="T"/>
+        /// <para>
+        ///     Code from:
+        ///     https://docs.microsoft.com/en-us/archive/msdn-magazine/2019/april/data-points-ef-core-in-a-docker-containerized-app
+        /// </para>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="webHost"></param>
+        /// <returns></returns>
         public static IHost MigrateDatabase<T>(this IHost webHost) where T : DbContext
         {
             using (var scope = webHost.Services.CreateScope())
