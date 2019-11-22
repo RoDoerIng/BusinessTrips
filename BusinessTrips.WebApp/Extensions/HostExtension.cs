@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BusinessTrips.WebApp.Extensions
 {
-    public static class WebHostExtension
+    public static class HostExtension
     {
         /// <summary>
         /// Executes the DB migration for a specific DbContext <typeparamref name="T"/>
