@@ -26,10 +26,7 @@ namespace BusinessTrips.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Address>().HasData(AddressSeeder.GetAddresses());
-
-            //AddressSeeder.GetAddresses()
-            //    .ToList()
-            //    .ForEach(a => modelBuilder.Entity<Address>().HasData(a));
+            modelBuilder.Entity<Name>().HasData(NameSeeder.GetNames());
 
         }
     }
