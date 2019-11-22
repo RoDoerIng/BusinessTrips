@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191122080358_AddressSeeding.cs" />
+    <Compile Remove="Migrations\20191122080358_AddressSeeding.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />

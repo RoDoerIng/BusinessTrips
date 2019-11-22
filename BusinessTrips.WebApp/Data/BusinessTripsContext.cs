@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BusinessTrips.Model;
+using BusinessTrips.WebApp.Data;
 
 namespace BusinessTrips.Data
 {
@@ -19,5 +20,17 @@ namespace BusinessTrips.Data
         public DbSet<BusinessTrips.Model.Address> Addresses { get; set; }
 
         public DbSet<BusinessTrips.Model.Name> Names { get; set; }
+
+        protected override void  OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Address>().HasData(AddressSeeder.GetAddresses());
+
+            //AddressSeeder.GetAddresses()
+            //    .ToList()
+            //    .ForEach(a => modelBuilder.Entity<Address>().HasData(a));
+
+        }
     }
 }
