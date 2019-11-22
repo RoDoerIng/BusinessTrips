@@ -30,7 +30,8 @@ namespace BusinessTrips.WebApp
             services.AddDbContext<BusinessTripsContext>(options =>
                     options
                     //.UseSqlServer(@"Server=192.168.188.104;Database=master;User Id=sa;Password=P@ssw0rd;")
-                    .UseInMemoryDatabase("BusinessTrips")
+                    //.UseInMemoryDatabase("BusinessTrips")
+                    .UseSqlite(@"Data Source = businesstrips.sqlite")
                     );
         }
 
