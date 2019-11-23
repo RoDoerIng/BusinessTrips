@@ -2,10 +2,10 @@
 @model BusinessTrips.WebApp.Pages.Addresses.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Address Index";
 }
 
-<h1>Index</h1>
+    <h1>@Html.DisplayNameFor(model => model.Addresses)</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -14,22 +14,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Address[0].Street)
+                @Html.DisplayNameFor(model => model.Addresses[0].Street)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address[0].StreetNumber)
+                @Html.DisplayNameFor(model => model.Addresses[0].StreetNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address[0].PostCode)
+                @Html.DisplayNameFor(model => model.Addresses[0].PostCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address[0].City)
+                @Html.DisplayNameFor(model => model.Addresses[0].City)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Address) {
+@foreach (var item in Model.Addresses) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Street)

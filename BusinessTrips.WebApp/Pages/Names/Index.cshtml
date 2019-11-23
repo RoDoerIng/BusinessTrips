@@ -2,10 +2,10 @@
 @model BusinessTrips.WebApp.Pages.Names.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Name Index";
 }
 
-<h1>Index</h1>
+    <h1>@Html.DisplayNameFor(model => model.Names)</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
