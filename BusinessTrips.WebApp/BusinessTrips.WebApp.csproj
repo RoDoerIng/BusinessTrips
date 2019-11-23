@@ -8,8 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191122072432_InitialMigration.cs" />
+    <Compile Remove="Migrations\20191122072432_InitialMigration.Designer.cs" />
     <Compile Remove="Migrations\20191122080358_AddressSeeding.cs" />
     <Compile Remove="Migrations\20191122080358_AddressSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20191122081013_AddressSeeding.cs" />
+    <Compile Remove="Migrations\20191122081013_AddressSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20191122125608_NameSeeding.cs" />
+    <Compile Remove="Migrations\20191122125608_NameSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20191123150231_PersonSeeding.cs" />
+    <Compile Remove="Migrations\20191123150231_PersonSeeding.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

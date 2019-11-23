@@ -15,7 +15,11 @@ namespace BusinessTrips.WebApp
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().MigrateDatabase<BusinessTripsContext>().Run();
+            CreateHostBuilder(args)
+                .Build()
+                .MigrateDatabase<BusinessTripsContext>()
+                //.SeedData()
+                .Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -127,6 +127,26 @@ namespace BusinessTrips.WebApp.Migrations
                     b.HasIndex("NameId");
 
                     b.ToTable("Persons");
+
+                    b.HasData(
+                        new
+                        {
+                            PersonId = 1,
+                            AddressId = 1,
+                            NameId = 1
+                        },
+                        new
+                        {
+                            PersonId = 2,
+                            AddressId = 2,
+                            NameId = 2
+                        },
+                        new
+                        {
+                            PersonId = 3,
+                            AddressId = 3,
+                            NameId = 3
+                        });
                 });
 
             modelBuilder.Entity("BusinessTrips.Model.Person", b =>

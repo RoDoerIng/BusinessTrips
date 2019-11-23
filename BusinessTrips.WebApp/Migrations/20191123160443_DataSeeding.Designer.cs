@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessTrips.WebApp.Migrations
 {
     [DbContext(typeof(BusinessTripsContext))]
-    [Migration("20191122081013_AddressSeeding")]
-    partial class AddressSeeding
+    [Migration("20191123160443_DataSeeding")]
+    partial class DataSeeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,6 +88,26 @@ namespace BusinessTrips.WebApp.Migrations
                     b.HasKey("NameId");
 
                     b.ToTable("Names");
+
+                    b.HasData(
+                        new
+                        {
+                            NameId = 1,
+                            FirstName = "John",
+                            LastName = "Doe"
+                        },
+                        new
+                        {
+                            NameId = 2,
+                            FirstName = "Jane",
+                            LastName = "Doe"
+                        },
+                        new
+                        {
+                            NameId = 3,
+                            FirstName = "FooBert",
+                            LastName = "BazMan"
+                        });
                 });
 
             modelBuilder.Entity("BusinessTrips.Model.Person", b =>
@@ -109,6 +129,26 @@ namespace BusinessTrips.WebApp.Migrations
                     b.HasIndex("NameId");
 
                     b.ToTable("Persons");
+
+                    b.HasData(
+                        new
+                        {
+                            PersonId = 1,
+                            AddressId = 1,
+                            NameId = 1
+                        },
+                        new
+                        {
+                            PersonId = 2,
+                            AddressId = 2,
+                            NameId = 2
+                        },
+                        new
+                        {
+                            PersonId = 3,
+                            AddressId = 3,
+                            NameId = 3
+                        });
                 });
 
             modelBuilder.Entity("BusinessTrips.Model.Person", b =>

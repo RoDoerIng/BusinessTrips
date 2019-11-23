@@ -27,6 +27,11 @@ namespace BusinessTrips.Data
 
             modelBuilder.Entity<Address>().HasData(AddressSeeder.GetAddresses());
             modelBuilder.Entity<Name>().HasData(NameSeeder.GetNames());
+            modelBuilder.Entity<Person>().HasData(
+                new { PersonId = 1, AddressId = 1, NameId = 1 },
+                new { PersonId = 2, AddressId = 2, NameId = 2 },
+                new { PersonId = 3, AddressId = 3, NameId = 3 });
+            
 
         }
     }

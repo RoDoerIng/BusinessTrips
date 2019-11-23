@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessTrips.WebApp.Migrations
 {
     [DbContext(typeof(BusinessTripsContext))]
-    [Migration("20191122125608_NameSeeding")]
-    partial class NameSeeding
+    [Migration("20191123153837_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,32 +42,6 @@ namespace BusinessTrips.WebApp.Migrations
                     b.HasKey("AddressId");
 
                     b.ToTable("Addresses");
-
-                    b.HasData(
-                        new
-                        {
-                            AddressId = 1,
-                            City = "FooCity",
-                            PostCode = "12345",
-                            Street = "FooStreet",
-                            StreetNumber = "42"
-                        },
-                        new
-                        {
-                            AddressId = 2,
-                            City = "BarTown",
-                            PostCode = "99999",
-                            Street = "BarAvenue",
-                            StreetNumber = "0"
-                        },
-                        new
-                        {
-                            AddressId = 3,
-                            City = "BazVillage",
-                            PostCode = "00000",
-                            Street = "BazWay",
-                            StreetNumber = "99"
-                        });
                 });
 
             modelBuilder.Entity("BusinessTrips.Model.Name", b =>
@@ -88,26 +62,6 @@ namespace BusinessTrips.WebApp.Migrations
                     b.HasKey("NameId");
 
                     b.ToTable("Names");
-
-                    b.HasData(
-                        new
-                        {
-                            NameId = 1,
-                            FirstName = "John",
-                            LastName = "Doe"
-                        },
-                        new
-                        {
-                            NameId = 2,
-                            FirstName = "Jane",
-                            LastName = "Doe"
-                        },
-                        new
-                        {
-                            NameId = 3,
-                            FirstName = "FooBert",
-                            LastName = "BazMan"
-                        });
                 });
 
             modelBuilder.Entity("BusinessTrips.Model.Person", b =>
