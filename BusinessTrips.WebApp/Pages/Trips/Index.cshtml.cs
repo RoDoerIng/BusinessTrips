@@ -19,11 +19,23 @@ namespace BusinessTrips.WebApp.Pages.Trips
             _context = context;
         }
 
-        public IList<Trip> Trip { get;set; }
+        public IList<Trip> Trips { get;set; }
+        public IList<Person> Persons { get;set; }
+
+        public string StartDisplayName => "Start";
+        public string DestinationDisplayName => "Destination";
 
         public async Task OnGetAsync()
         {
-            Trip = await _context.Trips.ToListAsync();
+            Trips = await _context.Trips
+                .Include(t=>t.StartAddress)
+                .Include(t=>t.DestinationAddress)
+                .ToListAsync();
+
+            Persons = await _context.Persons
+                .Include(p => p.Address)
+                .Include(p => p.Name)
+                .ToListAsync();
         }
     }
 }
