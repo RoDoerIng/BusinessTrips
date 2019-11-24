@@ -10,7 +10,7 @@ namespace BusinessTrips.Data
 {
     public class BusinessTripsContext : DbContext
     {
-        public BusinessTripsContext (DbContextOptions<BusinessTripsContext> options)
+        public BusinessTripsContext(DbContextOptions<BusinessTripsContext> options)
             : base(options)
         {
         }
@@ -21,7 +21,10 @@ namespace BusinessTrips.Data
 
         public DbSet<BusinessTrips.Model.Name> Names { get; set; }
 
-        protected override void  OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<BusinessTrips.Model.Trip> Trips { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -31,8 +34,9 @@ namespace BusinessTrips.Data
                 new { PersonId = 1, AddressId = 1, NameId = 1 },
                 new { PersonId = 2, AddressId = 2, NameId = 2 },
                 new { PersonId = 3, AddressId = 3, NameId = 3 });
-            
+
 
         }
+
     }
 }

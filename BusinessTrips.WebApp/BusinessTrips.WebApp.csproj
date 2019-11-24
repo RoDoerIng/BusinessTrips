@@ -18,6 +18,12 @@
     <Compile Remove="Migrations\20191122125608_NameSeeding.Designer.cs" />
     <Compile Remove="Migrations\20191123150231_PersonSeeding.cs" />
     <Compile Remove="Migrations\20191123150231_PersonSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20191123153837_InitialMigration.cs" />
+    <Compile Remove="Migrations\20191123153837_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20191123160443_DataSeeding.cs" />
+    <Compile Remove="Migrations\20191123160443_DataSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20191124135450_TripModel.cs" />
+    <Compile Remove="Migrations\20191124135450_TripModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
