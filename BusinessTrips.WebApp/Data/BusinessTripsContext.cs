@@ -35,7 +35,10 @@ namespace BusinessTrips.Data
                 new { PersonId = 2, AddressId = 2, NameId = 2 },
                 new { PersonId = 3, AddressId = 3, NameId = 3 });
 
-
+            modelBuilder.Entity<Trip>().HasData(
+                new { TripId = 1, Distance = 2.3m, Date = DateTime.Now.AddYears(-30), StartAddressAddressId = 1, DestinationAddressAddressId = 2 },
+                new { TripId = 2, Distance = 4.0m, Date = DateTime.Now.AddYears(-10), StartAddressAddressId = 2, DestinationAddressAddressId = 3 },
+                new { TripId = 3, Distance = 1.9m, Date = DateTime.Now.AddDays(-455), StartAddressAddressId = 3, DestinationAddressAddressId = 1 });
         }
 
     }
