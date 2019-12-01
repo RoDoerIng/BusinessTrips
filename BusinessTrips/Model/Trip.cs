@@ -10,7 +10,7 @@ namespace BusinessTrips.Model
         [Key]
         public int TripId { get; set; }
 
-        private DateTime _date = DateTime.MinValue;
+        private DateTime _date = DateTime.Today;
 
         [Required]
         public DateTime Date
@@ -21,7 +21,7 @@ namespace BusinessTrips.Model
         }
 
         [Range(0,double.MaxValue)]
-        public decimal Distance { get; set; }
+        public double Distance { get; set; }
 
         [Required]
         public Address StartAddress { get; set; }
