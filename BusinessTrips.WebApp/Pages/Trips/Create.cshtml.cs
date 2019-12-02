@@ -7,34 +7,60 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BusinessTrips.Data;
 using BusinessTrips.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusinessTrips.WebApp.Pages.Trips
 {
     public class CreateModel : PageModel
     {
         private readonly BusinessTrips.Data.BusinessTripsContext _context;
+        private List<Person> _persons;
+
+        [BindProperty]
+        public Trip Trip { get; set; }
+
+        public SelectList NameOptions { get; set; }
+
+        [BindProperty]
+        public int StartPersonId { get; set; }
+
+
+        [BindProperty]
+        public int DestinationPersonId { get; set; }
 
         public CreateModel(BusinessTrips.Data.BusinessTripsContext context)
         {
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            _persons = await _context.Persons.Include(p => p.Name).ToListAsync();
+            NameOptions = new SelectList(_persons, nameof(Person.PersonId), "Name.LastName");
+            Trip = new Trip();
+            Trip.Date = DateTime.Today;
+
             return Page();
         }
 
-        [BindProperty]
-        public Trip Trip { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            var startPerson = await _context.Persons
+                .Include(p => p.Address)
+                .FirstAsync(p => p.PersonId == StartPersonId);
+
+            var destinationPerson = await _context.Persons
+                .Include(p => p.Address)
+                .FirstAsync(p => p.PersonId == DestinationPersonId);
+
+            Trip.StartAddress = startPerson.Address;
+            Trip.DestinationAddress = destinationPerson.Address;
+
+            //if (!ModelState.IsValid)
+            //    return Page();
 
             _context.Trips.Add(Trip);
             await _context.SaveChangesAsync();
