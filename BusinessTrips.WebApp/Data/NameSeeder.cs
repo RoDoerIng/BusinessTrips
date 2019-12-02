@@ -22,7 +22,7 @@ namespace BusinessTrips.WebApp.Data
                 {
                     NameId = 2,
                     FirstName = "Jane",
-                    LastName = "Doe",
+                    LastName = "DoeDoe",
                 },
                 new Name
                 {
