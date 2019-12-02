@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BusinessTrips.WebApp.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,7 +44,7 @@ namespace BusinessTrips.WebApp.Migrations
                     TripId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Date = table.Column<DateTime>(nullable: false),
-                    Distance = table.Column<decimal>(nullable: false),
+                    Distance = table.Column<double>(nullable: false),
                     StartAddressAddressId = table.Column<int>(nullable: false),
                     DestinationAddressAddressId = table.Column<int>(nullable: false)
                 },
@@ -135,6 +135,21 @@ namespace BusinessTrips.WebApp.Migrations
                 table: "Persons",
                 columns: new[] { "PersonId", "AddressId", "NameId" },
                 values: new object[] { 3, 3, 3 });
+
+            migrationBuilder.InsertData(
+                table: "Trips",
+                columns: new[] { "TripId", "Date", "DestinationAddressAddressId", "Distance", "StartAddressAddressId" },
+                values: new object[] { 1, new DateTime(1989, 12, 1, 20, 48, 55, 437, DateTimeKind.Local).AddTicks(5997), 2, 2.2999999999999998, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Trips",
+                columns: new[] { "TripId", "Date", "DestinationAddressAddressId", "Distance", "StartAddressAddressId" },
+                values: new object[] { 2, new DateTime(2009, 12, 1, 20, 48, 55, 443, DateTimeKind.Local).AddTicks(6895), 3, 4.0, 2 });
+
+            migrationBuilder.InsertData(
+                table: "Trips",
+                columns: new[] { "TripId", "Date", "DestinationAddressAddressId", "Distance", "StartAddressAddressId" },
+                values: new object[] { 3, new DateTime(2018, 9, 2, 20, 48, 55, 443, DateTimeKind.Local).AddTicks(7019), 1, 1.8999999999999999, 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Persons_AddressId",

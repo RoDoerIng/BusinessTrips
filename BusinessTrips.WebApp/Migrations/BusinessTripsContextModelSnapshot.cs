@@ -180,7 +180,7 @@ namespace BusinessTrips.WebApp.Migrations
                         new
                         {
                             TripId = 1,
-                            Date = new DateTime(1989, 12, 1, 20, 20, 47, 512, DateTimeKind.Local).AddTicks(4139),
+                            Date = new DateTime(1989, 12, 1, 20, 48, 55, 437, DateTimeKind.Local).AddTicks(5997),
                             DestinationAddressAddressId = 2,
                             Distance = 2.2999999999999998,
                             StartAddressAddressId = 1
@@ -188,7 +188,7 @@ namespace BusinessTrips.WebApp.Migrations
                         new
                         {
                             TripId = 2,
-                            Date = new DateTime(2009, 12, 1, 20, 20, 47, 515, DateTimeKind.Local).AddTicks(9307),
+                            Date = new DateTime(2009, 12, 1, 20, 48, 55, 443, DateTimeKind.Local).AddTicks(6895),
                             DestinationAddressAddressId = 3,
                             Distance = 4.0,
                             StartAddressAddressId = 2
@@ -196,7 +196,7 @@ namespace BusinessTrips.WebApp.Migrations
                         new
                         {
                             TripId = 3,
-                            Date = new DateTime(2018, 9, 2, 20, 20, 47, 515, DateTimeKind.Local).AddTicks(9388),
+                            Date = new DateTime(2018, 9, 2, 20, 48, 55, 443, DateTimeKind.Local).AddTicks(7019),
                             DestinationAddressAddressId = 1,
                             Distance = 1.8999999999999999,
                             StartAddressAddressId = 3

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessTrips.WebApp.Migrations
 {
     [DbContext(typeof(BusinessTripsContext))]
-    [Migration("20191124194832_TripSeeding")]
-    partial class TripSeeding
+    [Migration("20191201194856_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,8 +164,8 @@ namespace BusinessTrips.WebApp.Migrations
                     b.Property<int>("DestinationAddressAddressId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("Distance")
-                        .HasColumnType("TEXT");
+                    b.Property<double>("Distance")
+                        .HasColumnType("REAL");
 
                     b.Property<int>("StartAddressAddressId")
                         .HasColumnType("INTEGER");
@@ -182,25 +182,25 @@ namespace BusinessTrips.WebApp.Migrations
                         new
                         {
                             TripId = 1,
-                            Date = new DateTime(1989, 11, 24, 20, 48, 31, 585, DateTimeKind.Local).AddTicks(5289),
+                            Date = new DateTime(1989, 12, 1, 20, 48, 55, 437, DateTimeKind.Local).AddTicks(5997),
                             DestinationAddressAddressId = 2,
-                            Distance = 2.3m,
+                            Distance = 2.2999999999999998,
                             StartAddressAddressId = 1
                         },
                         new
                         {
                             TripId = 2,
-                            Date = new DateTime(2009, 11, 24, 20, 48, 31, 588, DateTimeKind.Local).AddTicks(9486),
+                            Date = new DateTime(2009, 12, 1, 20, 48, 55, 443, DateTimeKind.Local).AddTicks(6895),
                             DestinationAddressAddressId = 3,
-                            Distance = 4.0m,
+                            Distance = 4.0,
                             StartAddressAddressId = 2
                         },
                         new
                         {
                             TripId = 3,
-                            Date = new DateTime(2018, 8, 26, 20, 48, 31, 588, DateTimeKind.Local).AddTicks(9578),
+                            Date = new DateTime(2018, 9, 2, 20, 48, 55, 443, DateTimeKind.Local).AddTicks(7019),
                             DestinationAddressAddressId = 1,
-                            Distance = 1.9m,
+                            Distance = 1.8999999999999999,
                             StartAddressAddressId = 3
                         });
                 });
