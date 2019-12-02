@@ -4,10 +4,13 @@ A project to enable users to track business trips.
 
 ## What's next
 
-- [ ] Add all required fields to new trip page at `/trips/create`
+- [x] Seed trip data
+- [x] Add all required fields to new trip page at `/trips/create`
+- [ ] Add representative fields to trip index page for each entity
 - [ ] Replace `Edit`, `Details`, `Remove` links on persons and trips index page with meaningful icons
 - [ ] List all trips on home page
 - [ ] Add more descriptive headers to all pages
+- [ ] Make *Date* and *Time* separate input fields on trip create page
 
 ## Prerequisites
 
