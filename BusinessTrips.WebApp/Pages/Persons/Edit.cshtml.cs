@@ -30,7 +30,10 @@ namespace BusinessTrips.WebApp.Pages.Persons
                 return NotFound();
             }
 
-            Person = await _context.Persons.FirstOrDefaultAsync(m => m.PersonId == id);
+            Person = await _context.Persons
+                .Include(p=>p.Name)
+                .Include(p=>p.Address)
+                .FirstOrDefaultAsync(m => m.PersonId == id);
 
             if (Person == null)
             {
