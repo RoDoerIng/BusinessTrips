@@ -6,6 +6,10 @@ A project to enable users to track business trips.
 
 - [x] Seed trip data
 - [x] Add all required fields to new trip page at `/trips/create`
+- [ ] Add fields to edit page of *Person*
+- [ ] Add fields to edit page of *Trip*
+- [ ] Display last name and first letter of first name in combo box on trip create page  
+- [ ] Display first name on persons index page
 - [ ] Add representative fields to trip index page for each entity
 - [ ] Replace `Edit`, `Details`, `Remove` links on persons and trips index page with meaningful icons
 - [ ] List all trips on home page
