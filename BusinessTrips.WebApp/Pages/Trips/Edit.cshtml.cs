@@ -15,6 +15,16 @@ namespace BusinessTrips.WebApp.Pages.Trips
     {
         private readonly BusinessTrips.Data.BusinessTripsContext _context;
 
+        private List<Person> _persons;
+
+        public SelectList NameOptions { get; private set; }
+
+        [BindProperty]
+        public int StartPersonId { get; set; }
+
+        [BindProperty]
+        public int DestinationPersonId { get; set; }
+
         public EditModel(BusinessTrips.Data.BusinessTripsContext context)
         {
             _context = context;
@@ -30,7 +40,16 @@ namespace BusinessTrips.WebApp.Pages.Trips
                 return NotFound();
             }
 
-            Trip = await _context.Trips.FirstOrDefaultAsync(m => m.TripId == id);
+            _persons = await _context.Persons.Include(p => p.Name).ToListAsync();
+            NameOptions = new SelectList(_persons, nameof(Person.PersonId), "Name.LastName");
+
+            Trip = await _context.Trips
+                .Include(t=>t.StartAddress)
+                .Include(t=>t.DestinationAddress)
+                .FirstOrDefaultAsync(m => m.TripId == id);
+
+            StartPersonId = _persons.FirstOrDefault(p => p.Address == Trip.StartAddress)?.PersonId ?? -1;
+            DestinationPersonId = _persons.FirstOrDefault(p => p.Address == Trip.DestinationAddress)?.PersonId ?? -1;
 
             if (Trip == null)
             {
@@ -43,10 +62,21 @@ namespace BusinessTrips.WebApp.Pages.Trips
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            ModelState.Clear();
+
+            var startPerson = _persons
+                .First(p => p.PersonId == StartPersonId);
+
+            var destinationPerson = _persons
+                .First(p => p.PersonId == DestinationPersonId);
+
+            Trip.StartAddress = startPerson.Address;
+            Trip.DestinationAddress = destinationPerson.Address;
+
+            TryValidateModel(Trip);
+
             if (!ModelState.IsValid)
-            {
                 return Page();
-            }
 
             _context.Attach(Trip).State = EntityState.Modified;
 
