@@ -114,7 +114,7 @@ namespace BusinessTrips.WebApp.Migrations
             migrationBuilder.InsertData(
                 table: "Names",
                 columns: new[] { "NameId", "FirstName", "LastName" },
-                values: new object[] { 2, "Jane", "Doe" });
+                values: new object[] { 2, "Jane", "DoeDoe" });
 
             migrationBuilder.InsertData(
                 table: "Names",

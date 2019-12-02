@@ -99,7 +99,7 @@ namespace BusinessTrips.WebApp.Migrations
                         {
                             NameId = 2,
                             FirstName = "Jane",
-                            LastName = "Doe"
+                            LastName = "DoeDoe"
                         },
                         new
                         {
