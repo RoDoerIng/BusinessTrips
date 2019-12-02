@@ -37,6 +37,7 @@ namespace BusinessTrips.WebApp.Pages.Trips
         {
             _persons = await _context.Persons.Include(p => p.Name).ToListAsync();
             NameOptions = new SelectList(_persons, nameof(Person.PersonId), "Name.LastName");
+            // TODO: Set todays date via HTML?
             Trip = new Trip();
             Trip.Date = DateTime.Today;
 
@@ -48,19 +49,21 @@ namespace BusinessTrips.WebApp.Pages.Trips
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            var startPerson = await _context.Persons
-                .Include(p => p.Address)
-                .FirstAsync(p => p.PersonId == StartPersonId);
+            ModelState.Clear();
 
-            var destinationPerson = await _context.Persons
-                .Include(p => p.Address)
-                .FirstAsync(p => p.PersonId == DestinationPersonId);
+            var startPerson = _persons
+                .First(p => p.PersonId == StartPersonId);
+
+            var destinationPerson = _persons
+                .First(p => p.PersonId == DestinationPersonId);
 
             Trip.StartAddress = startPerson.Address;
             Trip.DestinationAddress = destinationPerson.Address;
 
-            //if (!ModelState.IsValid)
-            //    return Page();
+            TryValidateModel(Trip);
+
+            if (!ModelState.IsValid)
+                return Page();
 
             _context.Trips.Add(Trip);
             await _context.SaveChangesAsync();
