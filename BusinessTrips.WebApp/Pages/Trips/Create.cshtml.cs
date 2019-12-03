@@ -19,6 +19,7 @@ namespace BusinessTrips.WebApp.Pages.Trips
         [BindProperty]
         public Trip Trip { get; set; }
 
+        // https://www.learnrazorpages.com/razor-pages/tag-helpers/select-tag-helper
         public SelectList NameOptions { get; set; }
 
         [BindProperty]
