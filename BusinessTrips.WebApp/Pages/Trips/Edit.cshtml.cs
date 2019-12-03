@@ -15,8 +15,6 @@ namespace BusinessTrips.WebApp.Pages.Trips
     {
         private readonly BusinessTrips.Data.BusinessTripsContext _context;
 
-        private List<Person> _persons;
-
         public SelectList NameOptions { get; private set; }
 
         [BindProperty]
@@ -36,25 +34,22 @@ namespace BusinessTrips.WebApp.Pages.Trips
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
-            _persons = await _context.Persons.Include(p => p.Name).ToListAsync();
-            NameOptions = new SelectList(_persons, nameof(Person.PersonId), "Name.LastName");
+            var persons = await _context.Persons.Include(p => p.Name).ToListAsync();
+            NameOptions = new SelectList(persons, nameof(Person.PersonId), "Name.LastName");
 
             Trip = await _context.Trips
                 .Include(t=>t.StartAddress)
                 .Include(t=>t.DestinationAddress)
                 .FirstOrDefaultAsync(m => m.TripId == id);
 
-            StartPersonId = _persons.FirstOrDefault(p => p.Address == Trip.StartAddress)?.PersonId ?? -1;
-            DestinationPersonId = _persons.FirstOrDefault(p => p.Address == Trip.DestinationAddress)?.PersonId ?? -1;
+            StartPersonId = persons.FirstOrDefault(p => p.Address == Trip.StartAddress)?.PersonId ?? -1;
+            DestinationPersonId = persons.FirstOrDefault(p => p.Address == Trip.DestinationAddress)?.PersonId ?? -1;
 
             if (Trip == null)
-            {
                 return NotFound();
-            }
+
             return Page();
         }
 
@@ -64,22 +59,26 @@ namespace BusinessTrips.WebApp.Pages.Trips
         {
             ModelState.Clear();
 
-            var startPerson = _persons
+            var persons = await _context.Persons
+                .Include(p => p.Address)
+                .ToListAsync();
+
+            var startPerson = persons
                 .First(p => p.PersonId == StartPersonId);
 
-            var destinationPerson = _persons
+            var destinationPerson = persons
                 .First(p => p.PersonId == DestinationPersonId);
 
             Trip.StartAddress = startPerson.Address;
             Trip.DestinationAddress = destinationPerson.Address;
 
+            _context.Attach(Trip).State = EntityState.Modified;
+
             TryValidateModel(Trip);
 
             if (!ModelState.IsValid)
                 return Page();
-
-            _context.Attach(Trip).State = EntityState.Modified;
-
+            
             try
             {
                 await _context.SaveChangesAsync();

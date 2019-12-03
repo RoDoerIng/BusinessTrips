@@ -26,13 +26,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Trip.StartAddress" class="control-label"></label>
-                @*<input asp-for="Trip.Distance" class="form-control" />*@
-                <select name="startPersonId" asp-items="Model.NameOptions" class="form-control"></select>
+            <select asp-for="StartPersonId" asp-items="Model.NameOptions" class="form-control">
+                <option value="">-- Select Start Address --</option>
+            </select>
             </div>
             <div class="form-group">
                 <label asp-for="Trip.DestinationAddress" class="control-label"></label>
-                @*<input asp-for="Trip.Distance" class="form-control" />*@
-                <select name="destinationPersonId" asp-items="Model.NameOptions" class="form-control"></select>
+                <select asp-for="DestinationPersonId" asp-items="Model.NameOptions" class="form-control">
+                    <option value="">-- Select Destination Address --</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
