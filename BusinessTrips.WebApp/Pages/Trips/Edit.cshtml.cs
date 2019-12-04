@@ -72,12 +72,13 @@ namespace BusinessTrips.WebApp.Pages.Trips
             Trip.StartAddress = startPerson.Address;
             Trip.DestinationAddress = destinationPerson.Address;
 
-            _context.Attach(Trip).State = EntityState.Modified;
 
             TryValidateModel(Trip);
 
             if (!ModelState.IsValid)
                 return Page();
+
+            _context.Attach(Trip).State = EntityState.Modified;
             
             try
             {

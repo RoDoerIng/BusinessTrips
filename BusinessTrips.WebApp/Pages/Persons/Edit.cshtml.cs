@@ -23,6 +23,12 @@ namespace BusinessTrips.WebApp.Pages.Persons
         [BindProperty]
         public Person Person { get; set; }
 
+        //[BindProperty]
+        //public Address Address { get; set; }
+
+        //[BindProperty]
+        //public Name Name { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -34,7 +40,7 @@ namespace BusinessTrips.WebApp.Pages.Persons
                 .Include(p=>p.Name)
                 .Include(p=>p.Address)
                 .FirstOrDefaultAsync(m => m.PersonId == id);
-
+            
             if (Person == null)
             {
                 return NotFound();
@@ -46,6 +52,18 @@ namespace BusinessTrips.WebApp.Pages.Persons
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            ModelState.Clear();
+
+            var person = await _context.Persons
+                .Include(p => p.Name)
+                .Include(p => p.Address)
+                .FirstAsync(p => p.PersonId == Person.PersonId);
+
+            Person.Address.AddressId = person.Address.AddressId;
+            Person.Name.NameId = person.Name.NameId;
+
+            TryValidateModel(Person);
+
             if (!ModelState.IsValid)
             {
                 return Page();
