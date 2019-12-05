@@ -14,7 +14,6 @@ namespace BusinessTrips.WebApp.Pages.Trips
     public class CreateModel : PageModel
     {
         private readonly BusinessTrips.Data.BusinessTripsContext _context;
-        private List<Person> _persons;
 
         [BindProperty]
         public Trip Trip { get; set; }
@@ -36,13 +35,14 @@ namespace BusinessTrips.WebApp.Pages.Trips
 
         public async Task<IActionResult> OnGet()
         {
-            _persons = await _context.Persons.Include(p => p.Name).ToListAsync();
+            var persons = await GetPersonsWithNamesAndAddresses();
             
-            NameOptions = _persons
+            NameOptions = persons
                 .Select(p => new SelectListItem(
                     $"{p.Name.LastName} {p.Name.FirstName.FirstOrDefault()}.",
                     $"{p.PersonId}"))
                 .ToList();
+
             // TODO: Set todays date via HTML?
             Trip = new Trip();
             Trip.Date = DateTime.Today;
@@ -57,14 +57,10 @@ namespace BusinessTrips.WebApp.Pages.Trips
         {
             ModelState.Clear();
 
-            var startPerson = _persons
-                .First(p => p.PersonId == StartPersonId);
+            var persons = await GetPersonsWithNamesAndAddresses();
 
-            var destinationPerson = _persons
-                .First(p => p.PersonId == DestinationPersonId);
-
-            Trip.StartAddress = startPerson.Address;
-            Trip.DestinationAddress = destinationPerson.Address;
+            Trip.StartAddress = GetAddress(persons, StartPersonId);
+            Trip.DestinationAddress = GetAddress(persons, DestinationPersonId);
 
             TryValidateModel(Trip);
 
@@ -75,6 +71,19 @@ namespace BusinessTrips.WebApp.Pages.Trips
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        private async Task<IList<Person>> GetPersonsWithNamesAndAddresses()
+        {
+            return await _context.Persons
+                .Include(p => p.Name)
+                .Include(p=>p.Address)
+                .ToListAsync();
+        }
+
+        private Address GetAddress(IEnumerable<Person> persons, int personId)
+        {
+            return persons?.FirstOrDefault(p => p.PersonId == personId)?.Address;
         }
     }
 }
