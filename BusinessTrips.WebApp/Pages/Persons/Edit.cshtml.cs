@@ -20,31 +20,31 @@ namespace BusinessTrips.WebApp.Pages.Persons
             _context = context;
         }
 
-        [BindProperty]
+        //[BindProperty]
         public Person Person { get; set; }
 
-        //[BindProperty]
-        //public Address Address { get; set; }
+        [BindProperty]
+        public Address Address { get; set; }
 
-        //[BindProperty]
-        //public Name Name { get; set; }
+        [BindProperty]
+        public Name Name { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             Person = await _context.Persons
                 .Include(p=>p.Name)
                 .Include(p=>p.Address)
                 .FirstOrDefaultAsync(m => m.PersonId == id);
+
+            Address = Person.Address;
+            Name = Person.Name;
             
             if (Person == null)
-            {
                 return NotFound();
-            }
+
             return Page();
         }
 
@@ -52,24 +52,11 @@ namespace BusinessTrips.WebApp.Pages.Persons
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            ModelState.Clear();
-
-            var person = await _context.Persons
-                .Include(p => p.Name)
-                .Include(p => p.Address)
-                .FirstAsync(p => p.PersonId == Person.PersonId);
-
-            Person.Address.AddressId = person.Address.AddressId;
-            Person.Name.NameId = person.Name.NameId;
-
-            TryValidateModel(Person);
-
             if (!ModelState.IsValid)
-            {
                 return Page();
-            }
 
-            _context.Attach(Person).State = EntityState.Modified;
+            _context.Attach(Address).State = EntityState.Modified;
+            _context.Attach(Name).State = EntityState.Modified;
 
             try
             {
@@ -78,13 +65,9 @@ namespace BusinessTrips.WebApp.Pages.Persons
             catch (DbUpdateConcurrencyException)
             {
                 if (!PersonExists(Person.PersonId))
-                {
                     return NotFound();
-                }
                 else
-                {
                     throw;
-                }
             }
 
             return RedirectToPage("./Index");
