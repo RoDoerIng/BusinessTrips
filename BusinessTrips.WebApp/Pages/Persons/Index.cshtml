@@ -17,6 +17,9 @@
                 @Html.DisplayNameFor(model => model.Persons[0].Name.LastName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Persons[0].Name.FirstName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Persons[0].Address.Street)
             </th>
             <th>
@@ -35,7 +38,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name.LastName)
             </td>
-            
+            <td>
+                @Html.DisplayFor(modelItem => item.Name.FirstName)
+            </td>
             <td>
                 @item.Address.Street @item.Address.StreetNumber
             </td>

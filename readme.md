@@ -10,7 +10,7 @@ A project to enable users to track business trips.
 - [x] Add fields to edit page of *Trip*
 - [x] Edit person must not create a new address!
 - [x] Display last name and first letter of first name in combo box on trip create page  
-- [ ] Display first name on persons index page
+- [x] Display first name on persons index page
 - [ ] Add representative fields to trip index page for each entity
 - [ ] Replace `Edit`, `Details`, `Remove` links on persons and trips index page with meaningful icons
 - [ ] List all trips on home page
