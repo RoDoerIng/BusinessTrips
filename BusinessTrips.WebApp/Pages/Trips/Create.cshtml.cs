@@ -20,7 +20,7 @@ namespace BusinessTrips.WebApp.Pages.Trips
         public Trip Trip { get; set; }
 
         // https://www.learnrazorpages.com/razor-pages/tag-helpers/select-tag-helper
-        public SelectList NameOptions { get; set; }
+        public List<SelectListItem> NameOptions { get; set; }
 
         [BindProperty]
         public int StartPersonId { get; set; }
@@ -37,7 +37,12 @@ namespace BusinessTrips.WebApp.Pages.Trips
         public async Task<IActionResult> OnGet()
         {
             _persons = await _context.Persons.Include(p => p.Name).ToListAsync();
-            NameOptions = new SelectList(_persons, nameof(Person.PersonId), "Name.LastName");
+            
+            NameOptions = _persons
+                .Select(p => new SelectListItem(
+                    $"{p.Name.LastName} {p.Name.FirstName.FirstOrDefault()}.",
+                    $"{p.PersonId}"))
+                .ToList();
             // TODO: Set todays date via HTML?
             Trip = new Trip();
             Trip.Date = DateTime.Today;
